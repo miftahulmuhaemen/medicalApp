@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@android:color/transparent"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingStart="@dimen/mediumSpace"
+            android:paddingEnd="@dimen/mediumSpace"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/btnBack"
+                android:layout_width="@dimen/backTopButton"
+                android:layout_height="@dimen/backTopButton"
+                android:backgroundTint="@android:color/black"
+                android:background="@drawable/ic_keyboard_arrow_left" />
+
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumSpace"
+        android:layout_marginStart="@dimen/mediumSpace"
+        android:text="@string/profile"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dummyDate"
+        android:textAppearance="?attr/textAppearanceBody2"
+        android:textColor="?android:attr/textColorSecondary"
+        android:layout_marginStart="@dimen/mediumSpace"
+        android:layout_marginTop="@dimen/smallSpace"
+        android:gravity="center_vertical"
+        android:drawablePadding="@dimen/smallSpace"
+        app:drawableStartCompat="@drawable/ic_clock" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_margin="@dimen/mediumSpace"
+        tools:background="@drawable/ic_launcher_background"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/mediumSpace"
+        android:layout_marginStart="@dimen/mediumSpace"
+        android:layout_marginEnd="@dimen/mediumSpace"
+        android:text="@string/loremipsum"
+        android:textSize="18sp" />
+
+</LinearLayout>

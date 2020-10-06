@@ -1,0 +1,45 @@
+<resources>
+    <string name="app_name">MedicalApp</string>
+    <string name="mailExample">example@google.com</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="createAccount">New here? Create account</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="name">Name</string>
+    <string name="type">Jenis Pengguna</string>
+    <string name="register">Register</string>
+    <string name="backToLogin">Joined us before? Login here</string>
+    <string name="i_m_a_psychologist">I\'m a Psychologist</string>
+    <string name="i_m_a_user">I\'m a user</string>
+    <string name="home">Home</string>
+    <string name="service">Layanan</string>
+    <string name="emergency">Darurat</string>
+    <string name="counseling">Konseling</string>
+    <string name="healthcare">Kesehatan</string>
+    <string name="contentdescription">contentDescription</string>
+    <string name="title">Judul</string>
+    <string name="loremipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="greeting">Selamat Datang,</string>
+    <string name="newsArticle">Artikel Terbaru</string>
+    <string name="basicMeditation">Basic Meditation</string>
+    <string name="profile">Profile</string>
+    <string name="age">Age</string>
+    <string name="gender">Gender</string>
+    <string name="laki_laki">Laki-Laki</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="update">Update</string>
+    <string name="journal">Journal</string>
+    <string name="today_s_journal">Today\'s Journal</string>
+    <string name="save">Save</string>
+    <string name="journal_history">Journal History</string>
+    <string name="dummyDate">20/20/20</string>
+    <string name="psychologist">Psychologist</string>
+    <string name="chat">Chat</string>
+    <string name="end_session">End Session</string>
+    <string name="set_contact">SET CONTACT</string>
+    <string name="help">Help</string>
+</resources>

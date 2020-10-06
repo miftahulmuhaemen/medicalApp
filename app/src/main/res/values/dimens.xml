@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mediumSpace">16dp</dimen>
+    <dimen name="smallSpace">8dp</dimen>
+    <dimen name="appBarHeight">70dp</dimen>
+    <dimen name="backTopButton">40dp</dimen>
+    <dimen name="largeSpace">64dp</dimen>
+</resources>
