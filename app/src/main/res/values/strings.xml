@@ -42,4 +42,9 @@
     <string name="end_session">End Session</string>
     <string name="set_contact">SET CONTACT</string>
     <string name="help">Help</string>
+    <string name="history">History</string>
+    <string name="turn_your_account_to_online">Turn your account to online</string>
+    <string name="reject">Reject</string>
+    <string name="accept">Accept</string>
+    <string name="patient_name">Patient Name</string>
 </resources>

@@ -47,34 +47,9 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/appbar"
-        android:layout_above="@id/bottomChat"
-        tools:listitem="@layout/item_counseling_chat_receive"/>
-
-    <RelativeLayout
-        android:id="@+id/bottomChat"
-        android:layout_alignParentBottom="true"
-        android:padding="@dimen/smallSpace"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/textButton"/>
-
-        <Button
-            android:id="@+id/textButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            app:icon="@drawable/ic_send"
-            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
-            />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"
+        android:layout_below="@id/appbar"/>
 
 </RelativeLayout>

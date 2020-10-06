@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/smallSpace"
+    android:layout_marginBottom="@dimen/mediumSpace"
+    android:layout_marginStart="@dimen/mediumSpace"
+    android:layout_marginEnd="@dimen/mediumSpace"
+    android:elevation="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/mediumSpace">
+
+        <ImageView
+            android:id="@+id/imgProfile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:srcCompat="@drawable/ic_launcher_background"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/contentdescription"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/mediumSpace"
+            android:paddingEnd="@dimen/mediumSpace"
+            android:layout_toEndOf="@id/imgProfile"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPatientName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/patient_name"
+                android:lines="1"
+                android:ellipsize="end"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                />
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/btnReject"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reject"
+        android:layout_marginEnd="@dimen/smallSpace"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <Button
+        android:id="@+id/btnAccept"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/accept"/>
+</LinearLayout>
+
+
+        </LinearLayout>
+
+        <com.google.android.material.progressindicator.ProgressIndicator
+            android:id="@+id/pbPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:progress="25"
+            android:layout_alignParentEnd="true"
+            app:indicatorType="circular"/>
+
+        <TextView
+            android:id="@+id/tvPbPatient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="25"
+            android:gravity="center"
+            android:layout_alignStart="@id/pbPatient"
+            android:layout_alignEnd="@id/pbPatient"
+            android:layout_alignTop="@id/pbPatient"
+            android:layout_alignBottom="@id/pbPatient"/>
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
