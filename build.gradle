@@ -8,7 +8,7 @@ buildscript {
     dependencies {
         classpath "com.android.tools.build:gradle:4.0.1"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-
+        classpath 'com.google.gms:google-services:4.3.4'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -19,6 +19,21 @@ allprojects {
         google()
         jcenter()
     }
+}
+
+ext{
+    lifecycleVersion = '2.2.0'
+    fragmentVersion = '1.2.5'
+    glideVersion = '4.10.0'
+
+    firebaseAnalytics = '17.5.0'
+    firebaseAuth = '19.4.0'
+    firebaseUiAuth = '6.3.0'
+    facebookLogin = '5.15.3'
+
+    viewPagerDotVersion = '4.1.2'
+
+    multidex_version = '2.0.1'
 }
 
 task clean(type: Delete) {

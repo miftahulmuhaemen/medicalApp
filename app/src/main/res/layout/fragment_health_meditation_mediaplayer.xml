@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".MeditationHealthFragment">
+    tools:context=".ui.user.health.meditation.MeditationHealthFragment">
 
     <ImageView
         android:layout_width="150dp"

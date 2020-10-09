@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="@dimen/mediumSpace"
-    tools:context=".HomeFragment">
+    tools:context=".ui.user.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
