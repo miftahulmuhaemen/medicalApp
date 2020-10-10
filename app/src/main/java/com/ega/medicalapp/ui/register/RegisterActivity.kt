@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ega.medicalapp.R
+import com.ega.medicalapp.data.model.Psychologist
 import com.ega.medicalapp.data.model.User
 import com.ega.medicalapp.ui.login.LoginActivity
+import com.google.android.gms.tasks.Task
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -35,8 +37,15 @@ class RegisterActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         val currentUser = auth.currentUser
-                        val user = User(etName.text.toString(), currentUser?.email, "", isUser(), 0)
-                        database.child("users").child(currentUser?.uid.toString()).setValue(user)
+                        val pathRequest : Task<Void>
+
+                        pathRequest = if(isUser()){
+                            database.child("users").child(currentUser?.uid.toString()).setValue(User(etName.text.toString(), currentUser?.email, "", 0))
+                        } else {
+                            database.child("psychologist").child(currentUser?.uid.toString()).setValue(Psychologist(etName.text.toString(), currentUser?.email, "", 0, false))
+                        }
+
+                        pathRequest
                             .addOnSuccessListener {
                                 Toast.makeText(
                                     baseContext, "Registration Success.",

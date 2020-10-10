@@ -12,9 +12,13 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/mediumSpace">
+        android:paddingStart="0dp"
+        android:paddingEnd="@dimen/mediumSpace"
+        android:paddingTop="@dimen/mediumSpace"
+        android:paddingBottom="@dimen/mediumSpace">
 
         <TextView
+            android:id="@+id/tvName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/greeting"
@@ -33,10 +37,13 @@
             android:layout_height="50dp"
             app:cardCornerRadius="50dp"
             android:layout_alignParentEnd="true">
+
             <ImageView
+                android:id="@+id/imgProfilePhoto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:src="@color/colorAccent"/>
+                android:scaleType="fitCenter"
+                android:src="@color/colorAccent" />
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>
@@ -60,6 +67,7 @@
         android:layout_marginBottom="@dimen/smallSpace"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvArticle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_article_fit"/>

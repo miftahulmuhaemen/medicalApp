@@ -6,9 +6,10 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @IgnoreExtraProperties
-data class User(
+data class Psychologist(
     var name: String? = "",
     var email: String? = "",
     var photo: String? = "",
-    var age: Int? = 0
+    var age: Int? = 0,
+    var isOnline: Boolean? = false
 ) : Parcelable
