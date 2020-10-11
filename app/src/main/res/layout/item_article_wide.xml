@@ -2,6 +2,9 @@
 <androidx.cardview.widget.CardView android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:elevation="4dp"
+    android:layout_marginTop="2dp"
+    android:layout_marginStart="2dp"
+    android:layout_marginEnd="2dp"
     android:layout_marginBottom="@dimen/mediumSpace"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -12,6 +15,7 @@
         android:orientation="vertical">
 
         <ImageView
+            android:id="@+id/imgArticle"
             android:layout_width="match_parent"
             android:layout_height="194dp"
             app:srcCompat="@drawable/ic_launcher_background"
@@ -26,15 +30,16 @@
             android:padding="16dp">
 
             <TextView
+                android:id="@+id/tvTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title"
-                android:lines="1"
                 android:ellipsize="end"
-                android:textAppearance="?attr/textAppearanceHeadline6"
-                />
+                android:lines="1"
+                android:text="@string/title"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
 
             <TextView
+                android:id="@+id/tvDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"

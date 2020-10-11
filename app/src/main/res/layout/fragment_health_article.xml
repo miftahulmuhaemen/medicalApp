@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.user.health.article.InformationHealthFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/newsArticle"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:layout_marginTop="@dimen/mediumSpace"
-        android:layout_marginBottom="@dimen/mediumSpace"/>
-
-    <androidx.recyclerview.widget.RecyclerView
+    <LinearLayout
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_article_wide"/>
+        android:layout_height="match_parent"
+        android:paddingStart="@dimen/mediumSpace"
+        android:paddingEnd="@dimen/mediumSpace"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/newsArticle"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:layout_marginTop="@dimen/mediumSpace"
+            android:layout_marginBottom="@dimen/mediumSpace"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvArticle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_article_wide"/>
+
+    </LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

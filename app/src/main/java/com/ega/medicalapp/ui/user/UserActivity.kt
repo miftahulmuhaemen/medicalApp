@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.ega.medicalapp.R
 import com.ega.medicalapp.ui.login.LoginActivity
 import com.ega.medicalapp.ui.register.RegisterActivity
@@ -34,6 +35,7 @@ class UserActivity : AppCompatActivity() {
         val userPagerAdapter = UserPager(this)
         userViewPager.adapter = userPagerAdapter
 
+        userViewPager.isUserInputEnabled = false
         userBottomNavigation.setOnNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.bnHome -> {

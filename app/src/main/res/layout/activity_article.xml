@@ -11,7 +11,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -34,6 +34,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/mediumSpace"
@@ -43,6 +44,7 @@
         android:textStyle="bold" />
 
     <TextView
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dummyDate"
@@ -55,12 +57,14 @@
         app:drawableStartCompat="@drawable/ic_clock" />
 
     <ImageView
+        android:id="@+id/imgArticle"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_margin="@dimen/mediumSpace"
         tools:background="@drawable/ic_launcher_background"/>
 
     <TextView
+        android:id="@+id/tvDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/mediumSpace"

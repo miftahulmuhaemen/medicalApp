@@ -6,9 +6,9 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @IgnoreExtraProperties
-data class User(
-    var name: String? = "",
-    var email: String? = "",
-    var photo: String? = "",
-    var age: Int? = 0
+data class ArticleEntity(
+    var date: String? = "",
+    var description: String? = "",
+    var title: String? = "",
+    var url: String? = ""
 ) : Parcelable

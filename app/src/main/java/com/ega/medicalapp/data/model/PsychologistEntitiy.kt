@@ -6,7 +6,7 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @IgnoreExtraProperties
-data class Psychologist(
+data class PsychologistEntitiy(
     var name: String? = "",
     var email: String? = "",
     var photo: String? = "",

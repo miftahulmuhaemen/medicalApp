@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ega.medicalapp.R
-import com.ega.medicalapp.data.model.User
 import com.ega.medicalapp.ui.psychologist.PsychologistActivity
 import com.ega.medicalapp.ui.register.RegisterActivity
 import com.ega.medicalapp.ui.user.UserActivity

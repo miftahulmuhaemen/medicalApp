@@ -4,10 +4,10 @@ import android.os.Parcelable
 import com.google.firebase.database.IgnoreExtraProperties
 import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 @IgnoreExtraProperties
-data class Article(
-    var date: String? = "",
-    var description: String? = "",
+data class MeditationEntity(
     var title: String? = "",
+    var description: String? = "",
     var url: String? = ""
-)
+) : Parcelable

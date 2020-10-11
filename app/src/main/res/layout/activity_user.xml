@@ -9,6 +9,7 @@
         android:id="@+id/userViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:overScrollMode="never"
         android:layout_above="@id/userBottomNavigation"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView

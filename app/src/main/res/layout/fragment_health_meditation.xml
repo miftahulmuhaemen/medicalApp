@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.user.health.article.InformationHealthFragment">
+    android:paddingStart="@dimen/mediumSpace"
+    android:paddingEnd="@dimen/mediumSpace"
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +17,7 @@
         android:layout_marginBottom="@dimen/mediumSpace"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvMeditation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_meditation_fit"/>

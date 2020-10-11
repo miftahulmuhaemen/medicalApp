@@ -1,111 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.core.widget.NestedScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
-        android:fitsSystemWindows="true">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
-            android:paddingStart="@dimen/mediumSpace"
-            android:paddingEnd="@dimen/mediumSpace"
-            android:orientation="horizontal">
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/white"
+            android:fitsSystemWindows="true">
 
-            <ImageView
-                android:id="@+id/btnBack"
-                android:layout_width="@dimen/backTopButton"
-                android:layout_height="@dimen/backTopButton"
-                android:backgroundTint="@android:color/black"
-                android:background="@drawable/ic_keyboard_arrow_left" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:paddingStart="@dimen/mediumSpace"
+                android:paddingEnd="@dimen/mediumSpace"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/mediumSpace"
-                android:text="@string/journal"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="@dimen/backTopButton"
+                    android:layout_height="@dimen/backTopButton"
+                    android:backgroundTint="@android:color/black"
+                    android:background="@drawable/ic_keyboard_arrow_left" />
 
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/mediumSpace"
+                    android:text="@string/journal"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-    </com.google.android.material.appbar.AppBarLayout>
+            </LinearLayout>
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:elevation="10dp"
-        android:layout_margin="@dimen/mediumSpace"
-        app:cardCornerRadius="10dp">
+        </com.google.android.material.appbar.AppBarLayout>
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/mediumSpace">
+            android:elevation="10dp"
+            android:layout_margin="@dimen/mediumSpace"
+            app:cardCornerRadius="10dp">
 
-            <androidx.cardview.widget.CardView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="10dp"
-                app:cardElevation="4dp">
+                android:padding="@dimen/mediumSpace">
 
-                <LinearLayout
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="4dp">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/today_s_journal"
-                        android:textSize="18sp"
-                        android:textStyle="bold"/>
-
-                    <EditText
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/smallSpace"
-                        android:lines="6"
-                        android:background="@android:color/transparent"/>
+                        android:orientation="vertical">
 
-                    <Button
-                        android:layout_width="100dp"
-                        android:layout_height="40dp"
-                        android:text="@string/save"
-                        android:layout_gravity="end"
-                        android:layout_marginTop="@dimen/smallSpace"
-                        android:background="@drawable/btn_state"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/today_s_journal"
+                            android:textSize="18sp"
+                            android:textStyle="bold"/>
 
-                </LinearLayout>
+                        <EditText
+                            android:id="@+id/etJournal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/smallSpace"
+                            android:background="@android:color/transparent"
+                            android:gravity="top"
+                            android:lines="6" />
 
-            </androidx.cardview.widget.CardView>
+                        <Button
+                            android:id="@+id/btnSave"
+                            android:layout_width="100dp"
+                            android:layout_height="40dp"
+                            android:text="@string/save"
+                            android:layout_gravity="end"
+                            android:layout_marginTop="@dimen/smallSpace"
+                            android:background="@drawable/btn_state"/>
 
-        </LinearLayout>
+                    </LinearLayout>
 
-    </androidx.cardview.widget.CardView>
+                </androidx.cardview.widget.CardView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/journal_history"
-        android:layout_marginStart="@dimen/mediumSpace"
-        android:layout_marginTop="@dimen/mediumSpace"
-        android:layout_marginBottom="@dimen/mediumSpace"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+            </LinearLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:listitem="@layout/item_journal_fit"/>
-</LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/journal_history"
+            android:layout_marginStart="@dimen/mediumSpace"
+            android:layout_marginTop="@dimen/mediumSpace"
+            android:layout_marginBottom="@dimen/mediumSpace"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvJournal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:listitem="@layout/item_journal_fit"/>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
