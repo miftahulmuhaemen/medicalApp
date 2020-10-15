@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:gravity="center"
-    tools:context=".ui.user.health.meditation.MeditationHealthFragment">
+    android:gravity="center">
 
     <ImageView
         android:layout_width="150dp"
@@ -15,6 +14,8 @@
         android:layout_marginBottom="@dimen/mediumSpace"/>
 
     <RelativeLayout
+
+        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/mediumSpace">
@@ -56,27 +57,25 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:visibility="invisible"
             android:id="@+id/btnBackward"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@drawable/ic_keyboard_arrow_left"/>
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPlay"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:gravity="end"
             android:backgroundTint="@color/colorAccent"
-            app:cardCornerRadius="50dp">
-
-            <ImageView
-                android:id="@+id/btnPlay"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_pause"/>
-
-        </androidx.cardview.widget.CardView>
+            app:icon="@drawable/ic_play"
+            app:iconTint="@color/white"
+            style="@style/Widget.App.Button.OutlinedButton.IconOnly"
+            app:cornerRadius="30dp"/>
 
         <ImageView
+            android:visibility="invisible"
             android:id="@+id/btnForward"
             android:layout_width="70dp"
             android:layout_height="70dp"

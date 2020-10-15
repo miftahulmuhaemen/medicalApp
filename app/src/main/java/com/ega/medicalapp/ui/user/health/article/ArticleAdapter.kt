@@ -17,13 +17,10 @@ class ArticleAdapter (private val articleEntities: ArrayList<ArticleEntity>) : R
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_article_fit, parent, false)
         return ArticleViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         holder.bind(articleEntities[position])
     }
-
     override fun getItemCount(): Int = articleEntities.size
-
 }
 
 class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

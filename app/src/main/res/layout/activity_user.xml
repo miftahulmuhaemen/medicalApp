@@ -3,14 +3,23 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/userViewPager"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <FrameLayout
+        android:id="@+id/flUser"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
-        android:layout_above="@id/userBottomNavigation"/>
+        android:layout_above="@id/userBottomNavigation"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="MainActivity">
+    </FrameLayout>
+<!--    <androidx.viewpager2.widget.ViewPager2-->
+<!--        android:id="@+id/userViewPager"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:overScrollMode="never"-->
+<!--        android:layout_above="@id/userBottomNavigation"/>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/userBottomNavigation"

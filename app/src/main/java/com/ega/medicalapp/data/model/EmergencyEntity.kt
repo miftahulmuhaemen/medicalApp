@@ -7,21 +7,15 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 @IgnoreExtraProperties
-data class UserEntity(
+data class EmergencyEntity(
     var name: String? = "",
-    var email: String? = "",
-    var photo: String? = "gs://medicalapp-e2fc9.appspot.com/118780058_1806454849507718_4343235856376208408_n.jpg",
-    var age: Int? = 0,
-    var gender: Boolean? = false,
+    var phone: String? = ""
 ) : Parcelable {
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
             "name" to name,
-            "email" to email,
-            "photo" to photo,
-            "age" to age,
-            "gender" to gender
+            "phone" to phone
         )
     }
 }

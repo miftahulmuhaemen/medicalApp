@@ -48,4 +48,13 @@
     <string name="accept">Accept</string>
     <string name="patient_name">Patient Name</string>
     <string name="search">Search</string>
+    <string name="logout">Logout</string>
+    <string name="waiting">Waiting</string>
+    <string name="request">Request</string>
+    <string name="delete">Delete</string>
+
+
+    <string name="map_key" translatable="false">
+        AIzaSyB77k_GFmPsQgRWzCC6B8N7mDsM-wD4mYs
+    </string>
 </resources>

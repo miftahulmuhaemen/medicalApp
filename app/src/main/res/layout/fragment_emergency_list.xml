@@ -34,7 +34,8 @@
                 android:gravity="center"
                 android:layout_marginEnd="@dimen/mediumSpace"
                 android:layout_marginStart="@dimen/mediumSpace"
-                android:layout_marginTop="@dimen/mediumSpace"/>
+                android:layout_marginTop="@dimen/mediumSpace"
+                android:layout_marginBottom="@dimen/mediumSpace"/>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
@@ -57,9 +58,11 @@
                         tools:listitem="@layout/item_emergency"/>
 
                     <LinearLayout
+                        android:id="@+id/btnAddTrustedContact"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="@dimen/mediumSpace"
+                        android:layout_marginTop="@dimen/mediumSpace"
                         android:layout_marginBottom="@dimen/mediumSpace"
                         android:orientation="horizontal">
 

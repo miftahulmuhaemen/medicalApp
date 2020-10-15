@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.ega.medicalapp.R
 import com.ega.medicalapp.data.model.UserEntity
@@ -61,6 +62,21 @@ class ProfileActivity : AppCompatActivity() {
                     ).show()
                 }
             })
+
+        btnLogout.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setMessage("Are you sure you want to exit?")
+                .setCancelable(false)
+                .setPositiveButton("Logout") { dialog, id ->
+                    Firebase.auth.signOut()
+                    finish()
+                }
+                .setNegativeButton("Cancel") { dialog, id ->
+                    dialog.dismiss()
+                }
+            val alert = builder.create()
+            alert.show()
+        }
 
         btnUpdate.setOnClickListener {
             val gender = rbMale.isChecked

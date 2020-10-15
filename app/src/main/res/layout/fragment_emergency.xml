@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
+        android:id="@+id/btnSetContact"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/set_contact"
@@ -21,23 +21,17 @@
         android:layout_marginEnd="@dimen/mediumSpace"
         android:layout_centerInParent="true">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/profilePhoto"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:elevation="10dp"
-            android:backgroundTint="@android:color/holo_red_light"
-            android:layout_marginBottom="@dimen/mediumSpace"
-            app:cardCornerRadius="100dp">
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                android:text="@string/help"
-                android:textSize="50sp"
-                android:textColor="@color/white"
-                />
-        </androidx.cardview.widget.CardView>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnHelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_circle"
+            app:backgroundTint="@color/red"
+            android:text="Help!"
+            android:textStyle="bold"
+            android:textAllCaps="false"
+            android:textSize="36dp" />
 
         <TextView
             android:layout_width="wrap_content"

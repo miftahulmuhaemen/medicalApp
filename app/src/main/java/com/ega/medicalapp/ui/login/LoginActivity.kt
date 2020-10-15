@@ -2,12 +2,14 @@ package com.ega.medicalapp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ega.medicalapp.R
 import com.ega.medicalapp.ui.psychologist.PsychologistActivity
 import com.ega.medicalapp.ui.register.RegisterActivity
 import com.ega.medicalapp.ui.user.UserActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -18,6 +20,8 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.etEmail
+import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -56,6 +60,31 @@ class LoginActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+        }
+
+        btnForgotPassword.setOnClickListener {
+
+            val dialog = MaterialAlertDialogBuilder(this)
+                .setTitle("Password will be sent to your email")
+                .setView(R.layout.dialog_forgot_password)
+                .setPositiveButton("Send") { dialog, which ->
+
+                    
+                    val email = etResetEmail.text.toString()
+
+                    Firebase.auth.sendPasswordResetEmail(email)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(
+                                    baseContext, "Reset sent.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
+                }
+                .show()
+
+            val butt = dialog.findViewById<EditText>(R.id.etResetEmail)
         }
     }
 

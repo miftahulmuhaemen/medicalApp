@@ -59,7 +59,7 @@ class ArticleFragment : Fragment() {
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     Toast.makeText(
-                        activity, "Registration failed.",
+                        activity, "Article load failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }

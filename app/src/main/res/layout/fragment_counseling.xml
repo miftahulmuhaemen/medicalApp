@@ -8,10 +8,11 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.appbar.AppBarLayout
+        android:visibility="gone"
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/transparent"
+        android:background="@android:color/white"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -46,11 +47,13 @@
         app:cardCornerRadius="10dp"
         android:elevation="10dp">
         <SearchView
+            android:id="@+id/svPsychologist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvCounseling"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         tools:listitem="@layout/item_counseling_fit"/>

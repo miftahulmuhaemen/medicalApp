@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.ega.medicalapp.R
-import com.ega.medicalapp.data.model.PsychologistEntitiy
+import com.ega.medicalapp.data.model.PsychologistEntity
 import com.ega.medicalapp.data.model.UserEntity
 import com.ega.medicalapp.ui.login.LoginActivity
 import com.google.android.gms.tasks.Task
@@ -42,7 +42,7 @@ class RegisterActivity : AppCompatActivity() {
                         pathRequest = if(isUser()){
                             database.child("users").child(currentUser?.uid.toString()).setValue(UserEntity(etName.text.toString(), currentUser?.email, ""))
                         } else {
-                            database.child("psychologist").child(currentUser?.uid.toString()).setValue(PsychologistEntitiy(etName.text.toString(), currentUser?.email, ""))
+                            database.child("psychologist").child(currentUser?.uid.toString()).setValue(PsychologistEntity(etName.text.toString(), currentUser?.email, ""))
                         }
 
                         pathRequest

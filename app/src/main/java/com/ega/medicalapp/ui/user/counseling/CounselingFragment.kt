@@ -5,56 +5,122 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ega.medicalapp.R
+import com.ega.medicalapp.data.model.AppointmentEntity
+import com.ega.medicalapp.data.model.PsychologistEntity
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import kotlinx.android.synthetic.main.fragment_counseling.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [CounselingFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class CounselingFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private lateinit var auth: FirebaseAuth
+    private lateinit var storage: FirebaseStorage
+    private lateinit var adapter: CounselingAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+        auth = Firebase.auth
+        storage = FirebaseStorage.getInstance()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_counseling, container, false)
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CounselingFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CounselingFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        rvCounseling.setHasFixedSize(true)
+        rvCounseling.layoutManager = LinearLayoutManager(context)
+
+        Firebase.database.reference.child("appointments").orderByChild("patient").equalTo(auth.currentUser?.uid)
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    val appointments: ArrayList<AppointmentEntity> = ArrayList()
+                    for (childSnapshot in dataSnapshot.children){
+                        appointments.add(childSnapshot.getValue(AppointmentEntity::class.java)!!)
+                    }
+
+                    onLoadPsychologist(appointments)
+
                 }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(
+                        activity, "Appointments load failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
+
+        svPsychologist.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
             }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter.filter.filter(newText)
+                return false
+            }
+        })
+    }
+
+    fun onLoadPsychologist(appointments: ArrayList<AppointmentEntity>){
+        Firebase.database.getReference("/psychologist/")
+            .addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                    val psychologistUIDs: ArrayList<String> = ArrayList()
+                    val psychologistEntity: ArrayList<PsychologistEntity> = ArrayList()
+                    val psychologistAppointments: ArrayList<AppointmentEntity> = ArrayList()
+
+                    for (childSnapshot in dataSnapshot.children){
+
+                        val psychologistUID = childSnapshot.key.toString()
+                        var isAppointmentEmpty = true
+
+                        for(appointment in appointments){
+                            if(appointment.psychologist == psychologistUID){
+                                psychologistAppointments.add(appointment)
+                                isAppointmentEmpty = false
+                            }
+                        }
+
+                        if(isAppointmentEmpty){
+                            psychologistAppointments.add(AppointmentEntity())
+                        }
+
+                        psychologistUIDs.add(psychologistUID)
+                        psychologistEntity.add(childSnapshot.getValue(PsychologistEntity::class.java)!!)
+                    }
+
+                    adapter = CounselingAdapter(activity as AppCompatActivity,psychologistEntity, psychologistAppointments, psychologistUIDs)
+                    adapter.notifyDataSetChanged()
+                    rvCounseling.adapter = adapter
+
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Toast.makeText(
+                        activity, "Psychologists load failed.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            })
     }
 }
