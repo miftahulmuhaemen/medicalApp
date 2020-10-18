@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -16,19 +18,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.psychologist.profile.ProfilePsychologistActivity"></activity>
 
-        <activity android:name=".ui.psychologist.ChatPsychologistActivity" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB77k_GFmPsQgRWzCC6B8N7mDsM-wD4mYs" />
+
+        <activity android:name=".ui.psychologist.counseling.ChatPsychologistActivity" />
         <activity android:name=".ui.psychologist.PsychologistActivity" />
-        <activity android:name="com.ega.medicalapp.ui.user.counseling.chat.ChatUserActivity">
+        <activity android:name=".ui.user.counseling.chat.ChatUserActivity">
             <intent-filter>
                 <action android:name="android.intent.action.SENDTO" />
+
                 <data android:mimeType="text/plain" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity android:name=".ui.user.health.article.detail.ArticleDetailActivity" />
         <activity android:name=".ui.user.journal.JournalActivity" />
-        <activity android:name=".ui.user.profile.ProfileActivity" />
+        <activity android:name=".ui.user.profile.ProfileUserActivity" />
         <activity
             android:name=".ui.user.UserActivity"
             android:launchMode="singleTop" />

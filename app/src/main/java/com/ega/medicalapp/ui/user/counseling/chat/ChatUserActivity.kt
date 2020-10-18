@@ -129,23 +129,11 @@ class ChatUserActivity : AppCompatActivity() {
                         .addOnSuccessListener {
                             database
                                 .child("appointments")
-                                .orderByChild("id")
-                                .equalTo(channelID)
-                                .addListenerForSingleValueEvent(object : ValueEventListener {
-                                    override fun onDataChange(dataSnapshot: DataSnapshot) {
-                                        for (childSnapshot in dataSnapshot.children){
-                                            database
-                                                .child("appointments")
-                                                .child(childSnapshot.key.toString())
-                                                .removeValue()
-                                        }
-
-                                        finish()
-                                    }
-
-                                    override fun onCancelled(databaseError: DatabaseError) {
-                                    }
-                                })
+                                .child(channelID)
+                                .removeValue()
+                                .addOnSuccessListener {
+                                    finish()
+                                }
                         }
 
                     true

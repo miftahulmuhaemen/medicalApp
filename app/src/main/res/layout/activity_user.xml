@@ -14,12 +14,6 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="MainActivity">
     </FrameLayout>
-<!--    <androidx.viewpager2.widget.ViewPager2-->
-<!--        android:id="@+id/userViewPager"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:overScrollMode="never"-->
-<!--        android:layout_above="@id/userBottomNavigation"/>-->
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/userBottomNavigation"

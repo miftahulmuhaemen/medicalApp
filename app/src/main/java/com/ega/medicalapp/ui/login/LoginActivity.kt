@@ -2,6 +2,7 @@ package com.ega.medicalapp.ui.login
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +22,6 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.etEmail
-import kotlinx.android.synthetic.main.dialog_forgot_password.*
 
 class LoginActivity : AppCompatActivity() {
 
@@ -64,14 +64,13 @@ class LoginActivity : AppCompatActivity() {
 
         btnForgotPassword.setOnClickListener {
 
-            val dialog = MaterialAlertDialogBuilder(this)
+            val view = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+            MaterialAlertDialogBuilder(this)
                 .setTitle("Password will be sent to your email")
-                .setView(R.layout.dialog_forgot_password)
+                .setView(view)
                 .setPositiveButton("Send") { dialog, which ->
 
-                    
-                    val email = etResetEmail.text.toString()
-
+                    val email = view.findViewById<EditText>(R.id.etResetEmail).text.toString()
                     Firebase.auth.sendPasswordResetEmail(email)
                         .addOnCompleteListener { task ->
                             if (task.isSuccessful) {
@@ -79,12 +78,13 @@ class LoginActivity : AppCompatActivity() {
                                     baseContext, "Reset sent.",
                                     Toast.LENGTH_SHORT
                                 ).show()
+
+                                dialog.dismiss()
                             }
                         }
                 }
                 .show()
 
-            val butt = dialog.findViewById<EditText>(R.id.etResetEmail)
         }
     }
 

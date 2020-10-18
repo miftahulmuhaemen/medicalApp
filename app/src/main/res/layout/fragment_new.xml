@@ -7,15 +7,19 @@
     android:layout_height="match_parent">
 
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:id="@+id/swOnline"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/mediumSpace"
+        android:layout_marginStart="@dimen/mediumSpace"
+        android:layout_marginEnd="@dimen/mediumSpace"
         android:checked="true"
         android:textSize="18sp"
         android:textStyle="bold"
         android:text="@string/turn_your_account_to_online"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPatientRequest"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/mediumSpace"

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/page_1"
+        android:id="@+id/bnNew"
         android:enabled="true"
         android:icon="@drawable/ic_star"
-        android:title="@string/home"/>
+        android:title="New"/>
     <item
-        android:id="@+id/page_2"
+        android:id="@+id/bnInProgress"
         android:enabled="true"
         android:icon="@drawable/ic_chat"
-        android:title="@string/chat"/>
+        android:title="@string/in_progress"/>
     <item
-        android:id="@+id/page_3"
+        android:id="@+id/bnHistory"
         android:enabled="true"
         android:icon="@drawable/ic_history"
         android:title="@string/history"/>

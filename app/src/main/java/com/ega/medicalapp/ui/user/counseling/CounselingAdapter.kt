@@ -1,6 +1,7 @@
 package com.ega.medicalapp.ui.user.counseling
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -97,6 +98,9 @@ class CounselingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val storage: FirebaseStorage = FirebaseStorage.getInstance()
 
         with(itemView) {
+
+            Log.d("CHECK", psychologistEntity.toString())
+
             tvPsychologistName.text = psychologistEntity.name
             tvExperience.text = psychologistEntity.experience
             GlideApp.with(itemView.context)
@@ -123,16 +127,21 @@ class CounselingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 else -> {
                     btnChat.setOnClickListener {
 
+                        val user = auth.currentUser
+                        val randomID = UUID.randomUUID().toString()
+
                         val post = AppointmentEntity(
-                            UUID.randomUUID().toString(),
-                            auth.currentUser?.uid,
+                            randomID,
+                            user?.uid,
                             psychologistUID,
-                            itemView.context.resources.getString(R.string.waiting)
+                            itemView.context.resources.getString(R.string.waiting),
+                            user?.photoUrl.toString(),
+                            user?.displayName
                         )
 
                         val postValue = post.toMap()
                         val childUpdate = hashMapOf<String, Any>(
-                            "appointments/${UUID.randomUUID()}" to postValue
+                            "appointments/${randomID}" to postValue
                         )
 
                         Firebase.database.reference.updateChildren(childUpdate)
@@ -154,7 +163,7 @@ class CounselingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 }
             }
 
-            if (!psychologistEntity.isOnline!!) {
+            if (!psychologistEntity.online!!) {
                 btnChat.isEnabled = false
             }
         }

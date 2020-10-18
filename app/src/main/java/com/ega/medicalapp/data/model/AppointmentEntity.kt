@@ -12,6 +12,8 @@ data class AppointmentEntity(
     var patient: String? = "",
     var psychologist: String? = "",
     var status: String? = "",
+    var photo: String? = "",
+    var patientname: String? = "",
     var time: Int? = 1
 ) : Parcelable {
     @Exclude
@@ -21,6 +23,8 @@ data class AppointmentEntity(
             "patient" to patient,
             "psychologist" to psychologist,
             "status" to status,
+            "photo" to photo,
+            "patientname" to patientname,
             "time" to time
         )
     }

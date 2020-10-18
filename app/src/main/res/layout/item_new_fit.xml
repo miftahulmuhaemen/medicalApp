@@ -66,6 +66,7 @@
 
         <com.google.android.material.progressindicator.ProgressIndicator
             android:id="@+id/pbPatient"
+            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:progress="25"
@@ -73,15 +74,15 @@
             app:indicatorType="circular"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tvPbPatient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="25"
-            android:gravity="center"
-            android:layout_alignStart="@id/pbPatient"
-            android:layout_alignEnd="@id/pbPatient"
             android:layout_alignTop="@id/pbPatient"
-            android:layout_alignBottom="@id/pbPatient"/>
+            android:layout_alignEnd="@id/pbPatient"
+            android:layout_alignBottom="@id/pbPatient"
+            android:gravity="center"
+            android:text="25" />
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

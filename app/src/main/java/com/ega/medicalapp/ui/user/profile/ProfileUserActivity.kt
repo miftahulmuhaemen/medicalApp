@@ -3,6 +3,7 @@ package com.ega.medicalapp.ui.user.profile
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import com.ega.medicalapp.data.model.UserEntity
 import com.ega.medicalapp.util.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.DatabaseReference
@@ -18,11 +20,11 @@ import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
-import kotlinx.android.synthetic.main.activity_profile.*
+import kotlinx.android.synthetic.main.activity_profile_user.*
 import java.util.*
 
 
-class ProfileActivity : AppCompatActivity() {
+class ProfileUserActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var storage: FirebaseStorage
@@ -30,7 +32,7 @@ class ProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.activity_profile_user)
 
         auth = Firebase.auth
         storage = FirebaseStorage.getInstance()
@@ -40,7 +42,7 @@ class ProfileActivity : AppCompatActivity() {
             .addValueEventListener(object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
                     val userEntity: UserEntity? = dataSnapshot.getValue(UserEntity::class.java)
-                    GlideApp.with(this@ProfileActivity)
+                    GlideApp.with(this@ProfileUserActivity)
                         .load(storage.getReferenceFromUrl(userEntity?.photo.toString()))
                         .into(imgProfilePhoto)
 
@@ -57,7 +59,7 @@ class ProfileActivity : AppCompatActivity() {
 
                 override fun onCancelled(databaseError: DatabaseError) {
                     Toast.makeText(
-                        this@ProfileActivity, "Registration failed.",
+                        this@ProfileUserActivity, "Registration failed.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -79,18 +81,21 @@ class ProfileActivity : AppCompatActivity() {
         }
 
         btnUpdate.setOnClickListener {
+
+            val user = auth.currentUser
             val gender = rbMale.isChecked
+            val photo = imgProfilePhoto.contentDescription.toString()
             val post = UserEntity(
                 etName.text.toString(),
                 etEmail.text.toString(),
-                imgProfilePhoto.contentDescription.toString(),
+                photo,
                 etAge.text.toString().toInt(),
                 gender
             )
 
             val postValue = post.toMap()
             val childUpdate = hashMapOf<String, Any>(
-                "users/${auth.currentUser?.uid}" to postValue
+                "users/${user?.uid}" to postValue
             )
 
             database.updateChildren(childUpdate)
@@ -107,6 +112,20 @@ class ProfileActivity : AppCompatActivity() {
                         ).show()
                     }
                 }
+
+            val profileUpdates = userProfileChangeRequest {
+                displayName = etName.text.toString()
+                photoUri = Uri.parse(photo)
+            }
+
+            user!!.updateProfile(profileUpdates)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        Log.d("CHECK", "User profile updated.")
+                    }
+                }
+
+
         }
 
         btnBack.setOnClickListener {

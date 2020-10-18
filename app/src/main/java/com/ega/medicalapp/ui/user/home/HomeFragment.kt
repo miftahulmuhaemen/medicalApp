@@ -13,10 +13,11 @@ import com.ega.medicalapp.data.model.ArticleEntity
 import com.ega.medicalapp.data.model.UserEntity
 import com.ega.medicalapp.ui.user.health.article.ArticleAdapter
 import com.ega.medicalapp.ui.user.journal.JournalActivity
-import com.ega.medicalapp.ui.user.profile.ProfileActivity
+import com.ega.medicalapp.ui.user.profile.ProfileUserActivity
 import com.ega.medicalapp.util.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
@@ -25,6 +26,7 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.FirebaseStorage.*
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.fragment_home.imgProfilePhoto
 
 
 class HomeFragment : Fragment() {
@@ -57,9 +59,16 @@ class HomeFragment : Fragment() {
                     val userEntity: UserEntity? = dataSnapshot.getValue(UserEntity::class.java)
                     val name = getString(R.string.greeting) + userEntity?.name
                     tvName.text = name
+
                     GlideApp.with(this@HomeFragment)
                         .load(storage.getReferenceFromUrl(userEntity?.photo.toString()))
                         .into(imgProfilePhoto)
+
+                    val profileUpdates = userProfileChangeRequest {
+                        displayName = userEntity?.name
+                    }
+
+                    auth.currentUser!!.updateProfile(profileUpdates)
                 }
 
                 override fun onCancelled(databaseError: DatabaseError) {
@@ -92,7 +101,7 @@ class HomeFragment : Fragment() {
             })
 
         imgProfile.setOnClickListener {
-            val intent = Intent(activity, ProfileActivity::class.java)
+            val intent = Intent(activity, ProfileUserActivity::class.java)
             startActivity(intent)
         }
 

@@ -12,7 +12,10 @@ data class ChannelEntity(
     var endSession: Boolean? = false,
     var patient: String? = "",
     var psychologist: String? = "",
-    var timestamp: Int? = 0
+    var timestamp: Long? = 0,
+    var patientname: String? = "",
+    var patientphoto: String? = "",
+    var id: String? = ""
 ) : Parcelable {
     @Exclude
     fun toMap(): Map<String, Any?> {
@@ -21,7 +24,10 @@ data class ChannelEntity(
             "endSession" to endSession,
             "patient" to patient,
             "psychologist" to psychologist,
-            "timestamp" to timestamp
+            "timestamp" to timestamp,
+            "patientname" to patientname,
+            "patientphoto" to patientphoto,
+            "id" to id
         )
     }
 }
