@@ -57,5 +57,14 @@
     <string name="alumni">Alumni</string>
     <string name="doctor_address">Doctor\'s Office</string>
     <string name="sipp">SIPP</string>
+    <string name="mental_health_service">Mental Health Service</string>
+    <string name="location">Location</string>
 
+    <array name="locationSample">
+        <item></item>
+        <item>Banjarbaru</item>
+        <item>Banjarmasin</item>
+        <item>Pelaihari</item>
+        <item>Samarinda</item>
+    </array>
 </resources>

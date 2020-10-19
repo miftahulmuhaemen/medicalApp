@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/mediumSpace"
+    android:layout_marginEnd="@dimen/mediumSpace"
+    android:layout_marginBottom="@dimen/mediumSpace"
+    android:layout_marginTop="@dimen/smallSpace"
+    android:elevation="4dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Klinik Putih"
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="?android:attr/textColorSecondary"
+                />
+
+            <TextView
+                android:id="@+id/tvAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_address"
+                android:drawableStart="@drawable/ic_place"
+                android:drawablePadding="@dimen/smallSpace"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:layout_marginTop="@dimen/smallSpace"
+                />
+
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_address"
+                android:drawableStart="@drawable/ic_clock"
+                android:drawablePadding="@dimen/smallSpace"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:layout_marginTop="@dimen/smallSpace"
+                />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="@dimen/smallSpace"
+                android:layout_marginBottom="@dimen/smallSpace"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:id="@+id/tvPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_address"
+                android:autoLink="phone"
+                android:drawableStart="@drawable/ic_phone"
+                android:drawablePadding="@dimen/smallSpace"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:layout_marginTop="@dimen/smallSpace"
+                />
+
+            <TextView
+                android:id="@+id/tvWeb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_address"
+                android:autoLink="web"
+                android:drawableStart="@drawable/ic_web"
+                android:drawablePadding="@dimen/smallSpace"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:layout_marginTop="@dimen/smallSpace"
+                />
+
+            <TextView
+                android:id="@+id/tvMap"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/doctor_address"
+                android:textColor="@color/colorAccent"
+                android:drawableStart="@drawable/ic_map"
+                android:autoLink="map"
+                android:drawablePadding="@dimen/smallSpace"
+                android:textAppearance="?attr/textAppearanceSubtitle1"
+                android:layout_marginTop="@dimen/smallSpace"
+                />
+
+        </LinearLayout>
+
+</androidx.cardview.widget.CardView>
