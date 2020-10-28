@@ -40,9 +40,9 @@ class RegisterActivity : AppCompatActivity() {
                         val pathRequest : Task<Void>
 
                         pathRequest = if(isUser()){
-                            database.child("users").child(currentUser?.uid.toString()).setValue(UserEntity(etName.text.toString(), currentUser?.email, ""))
+                            database.child("users").child(currentUser?.uid.toString()).setValue(UserEntity(etName.text.toString(), currentUser?.email))
                         } else {
-                            database.child("psychologist").child(currentUser?.uid.toString()).setValue(PsychologistEntity(etName.text.toString(), currentUser?.email, ""))
+                            database.child("psychologist").child(currentUser?.uid.toString()).setValue(PsychologistEntity(etName.text.toString(), currentUser?.email))
                         }
 
                         pathRequest
