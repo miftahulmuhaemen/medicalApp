@@ -129,13 +129,14 @@ class CounselingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
                         val user = auth.currentUser
                         val randomID = UUID.randomUUID().toString()
+                        val photoURL : String = (user?.photoUrl ?: "gs://medicalapp-e2fc9.appspot.com/118780058_1806454849507718_4343235856376208408_n.jpg").toString()
 
                         val post = AppointmentEntity(
                             randomID,
                             user?.uid,
                             psychologistUID,
                             itemView.context.resources.getString(R.string.waiting),
-                            user?.photoUrl.toString(),
+                            photoURL,
                             user?.displayName
                         )
 

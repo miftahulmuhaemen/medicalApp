@@ -12,7 +12,7 @@ data class AppointmentEntity(
     var patient: String? = "",
     var psychologist: String? = "",
     var status: String? = "",
-    var photo: String? = "",
+    var photo: String? = "gs://medicalapp-e2fc9.appspot.com/118780058_1806454849507718_4343235856376208408_n.jpg",
     var patientname: String? = "",
     var time: Int? = 1
 ) : Parcelable {
