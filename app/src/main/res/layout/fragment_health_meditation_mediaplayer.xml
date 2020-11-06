@@ -8,19 +8,19 @@
     android:gravity="center">
 
     <ImageView
+        android:id="@+id/imgPhoto"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:src="@drawable/ic_launcher_background"
         android:layout_marginBottom="@dimen/mediumSpace"/>
 
     <RelativeLayout
-
-        android:visibility="invisible"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="@dimen/mediumSpace">
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tvStartTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -28,18 +28,19 @@
             android:textStyle="bold"
             android:text="00:00"/>
 
-        <com.google.android.material.slider.Slider
+        <androidx.core.widget.ContentLoadingProgressBar
             android:id="@+id/pbMedia"
+            android:progress="0"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:trackColor="#4301A39D"
-            app:thumbColor="@color/colorAccent"
             android:layout_marginStart="@dimen/mediumSpace"
             android:layout_marginEnd="@dimen/mediumSpace"
             android:layout_toEndOf="@id/tvStartTime"
             android:layout_toStartOf="@id/tvEndTime"/>
 
         <TextView
+            android:visibility="invisible"
             android:id="@+id/tvEndTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

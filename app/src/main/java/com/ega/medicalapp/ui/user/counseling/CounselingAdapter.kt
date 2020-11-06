@@ -1,7 +1,6 @@
 package com.ega.medicalapp.ui.user.counseling
 
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,6 +17,7 @@ import com.ega.medicalapp.util.GlideApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.item_counseling_fit.view.*
 import java.util.*
@@ -99,74 +99,90 @@ class CounselingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         with(itemView) {
 
-            Log.d("CHECK", psychologistEntity.toString())
-
             tvPsychologistName.text = psychologistEntity.name
             tvExperience.text = psychologistEntity.experience
             GlideApp.with(itemView.context)
                 .load(storage.getReferenceFromUrl(psychologistEntity.photo.toString()))
                 .into(imgPsychologist)
 
-            when (psychologistAppointment.status) {
-                itemView.resources.getString(R.string.waiting) -> {
-                    btnChat.text = activity.resources.getString(R.string.waiting)
-                }
-                itemView.resources.getString(R.string.accept) -> {
-                    btnChat.text = activity.resources.getString(R.string.chat)
-                    btnChat.setOnClickListener {
-                        val intent = Intent(
-                            itemView.context,
-                            ChatUserActivity::class.java
-                        )
-                            .putExtra(CHAT_APPOINTMENT, psychologistAppointment)
-                            .putExtra(CHAT_PSYCHOLOGIST, psychologistEntity)
+            when (psychologistEntity.online) {
+                true -> {
+                    when (psychologistAppointment.status) {
+                        itemView.resources.getString(R.string.waiting) -> {
+                            btnChat.text = activity.resources.getString(R.string.waiting)
+                        }
+                        itemView.resources.getString(R.string.accept) -> {
+                            btnChat.text = activity.resources.getString(R.string.chat)
+                            btnChat.setOnClickListener {
+                                val intent = Intent(
+                                    itemView.context,
+                                    ChatUserActivity::class.java
+                                )
+                                    .putExtra(CHAT_APPOINTMENT, psychologistAppointment)
+                                    .putExtra(CHAT_PSYCHOLOGIST, psychologistEntity)
 
-                        itemView.context.startActivity(intent)
+                                itemView.context.startActivity(intent)
+                            }
+                        }
+                        else -> {
+                            btnChat.setOnClickListener {
+
+                                val user = auth.currentUser
+                                val randomID = UUID.randomUUID().toString()
+                                val photoURL: String = (user?.photoUrl
+                                    ?: "gs://medicalapp-e2fc9.appspot.com/118780058_1806454849507718_4343235856376208408_n.jpg").toString()
+
+                                val post = AppointmentEntity(
+                                    randomID,
+                                    user?.uid,
+                                    psychologistUID,
+                                    itemView.context.resources.getString(R.string.waiting),
+                                    photoURL,
+                                    user?.displayName
+                                )
+
+                                val postValue = post.toMap()
+                                val childUpdate = hashMapOf<String, Any>(
+                                    "appointments/${randomID}" to postValue
+                                )
+
+                                Firebase.database.reference.updateChildren(childUpdate)
+                                    .addOnCompleteListener(activity) { task ->
+                                        if (task.isSuccessful) {
+                                            Toast.makeText(
+                                                activity, "Request success.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            btnChat.text =
+                                                activity.resources.getString(R.string.waiting)
+                                        } else {
+                                            Toast.makeText(
+                                                activity, "Request failed.",
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                        }
+                                    }
+                            }
+                        }
                     }
                 }
-                else -> {
+                false -> {
+                    btnChat.text = activity.resources.getString(R.string.notify)
                     btnChat.setOnClickListener {
-
-                        val user = auth.currentUser
-                        val randomID = UUID.randomUUID().toString()
-                        val photoURL : String = (user?.photoUrl ?: "gs://medicalapp-e2fc9.appspot.com/118780058_1806454849507718_4343235856376208408_n.jpg").toString()
-
-                        val post = AppointmentEntity(
-                            randomID,
-                            user?.uid,
-                            psychologistUID,
-                            itemView.context.resources.getString(R.string.waiting),
-                            photoURL,
-                            user?.displayName
-                        )
-
-                        val postValue = post.toMap()
-                        val childUpdate = hashMapOf<String, Any>(
-                            "appointments/${randomID}" to postValue
-                        )
-
-                        Firebase.database.reference.updateChildren(childUpdate)
-                            .addOnCompleteListener(activity) { task ->
-                                if (task.isSuccessful) {
-                                    Toast.makeText(
-                                        activity, "Request success.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
-                                    btnChat.text = activity.resources.getString(R.string.waiting)
-                                } else {
-                                    Toast.makeText(
-                                        activity, "Request failed.",
-                                        Toast.LENGTH_SHORT
-                                    ).show()
+                        FirebaseMessaging.getInstance().subscribeToTopic(psychologistUID)
+                            .addOnCompleteListener { task ->
+                                var msg = "Success pin notification on, ${psychologistEntity.name}"
+                                if (!task.isSuccessful) {
+                                    msg = "Failed pin notification on, ${psychologistEntity.name}"
                                 }
+                                Toast.makeText(itemView.context, msg, Toast.LENGTH_SHORT).show()
                             }
                     }
                 }
+                else -> {
+                }
             }
 
-            if (!psychologistEntity.online!!) {
-                btnChat.isEnabled = false
-            }
         }
     }
 }

@@ -39,6 +39,7 @@
     <string name="dummyDate">20/20/20</string>
     <string name="psychologist">Psychologist</string>
     <string name="chat">Chat</string>
+    <string name="notify">Notify Me</string>
     <string name="end_session">End Session</string>
     <string name="set_contact">SET CONTACT</string>
     <string name="help">Help</string>

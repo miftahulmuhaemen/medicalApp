@@ -9,5 +9,6 @@ import kotlinx.android.parcel.Parcelize
 data class MeditationEntity(
     var title: String? = "",
     var description: String? = "",
+    var photo: String? = "",
     var url: String? = ""
 ) : Parcelable

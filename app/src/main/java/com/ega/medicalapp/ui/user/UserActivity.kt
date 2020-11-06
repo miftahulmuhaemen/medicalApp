@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -22,6 +23,7 @@ import com.ega.medicalapp.util.hasPermissions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
 import kotlinx.android.synthetic.main.activity_user.*
 
 class UserActivity : AppCompatActivity() {
@@ -35,6 +37,7 @@ class UserActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
+
         auth = Firebase.auth
         if (auth.currentUser == null) {
             intent = Intent(

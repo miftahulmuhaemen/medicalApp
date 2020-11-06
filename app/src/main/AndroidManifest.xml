@@ -18,7 +18,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.psychologist.profile.ProfilePsychologistActivity"></activity>
+
+        <service
+            android:name=".service.FirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name=".ui.psychologist.profile.ProfilePsychologistActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

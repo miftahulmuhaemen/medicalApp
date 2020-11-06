@@ -4,7 +4,6 @@ import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,13 +15,11 @@ import com.ega.medicalapp.R
 import com.ega.medicalapp.data.model.EmergencyEntity
 import com.github.tamir7.contacts.Contact
 import com.github.tamir7.contacts.Contacts
-import com.github.tamir7.contacts.Query
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -83,18 +80,27 @@ class TrustedContactFragment : Fragment() {
             })
 
         btnAddTrustedContact.setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(requireActivity(), Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(
+                    requireActivity(),
+                    Manifest.permission.READ_CONTACTS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
                 requestPermissions(arrayOf(Manifest.permission.READ_CONTACTS), CONTACT)
             } else {
-                val contacts: List<Contact>  = Contacts.getQuery().find()
+                val contacts: List<Contact> = Contacts.getQuery().find()
                 var name = emptyArray<String>()
                 var phoneNumber = emptyArray<String>()
 
                 val timestamp = System.currentTimeMillis()
 
-                for(contact in contacts){
-                    name += contact.givenName
-                    phoneNumber += contact.phoneNumbers.first().number
+                for (contact in contacts) {
+                    if (!contact.givenName.isNullOrEmpty()) {
+                        if (!contact.phoneNumbers.isNullOrEmpty())
+                            if (!contact.phoneNumbers.first().number.isNullOrEmpty()) {
+                                name += contact.givenName
+                                phoneNumber += contact.phoneNumbers.first().number
+                            }
+                    }
                 }
 
                 MaterialAlertDialogBuilder(requireActivity())
